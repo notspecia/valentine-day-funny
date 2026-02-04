@@ -4,14 +4,20 @@ import { reactive, ref } from 'vue'
 /* STATICS */
 const noPhrases = [
     "",
-    "no?",
-    "why?",
+    "think about it",
+    "why no?",
     "are u sure?",
     "dont hurt me plz </3",
-    "think about it"
+
 ];
 
-
+const gifts = [
+    'https://media.tenor.com/Qz8ZJcAsW7MAAAAi/bubu-love-bite.gif',
+    'https://media.tenor.com/AbrC4pKZ6MsAAAAi/smoochie-smooches.gif',
+    'https://media.tenor.com/8dzBZD1j7G8AAAAi/hello-kitty-daniel.gif',
+    'https://media.tenor.com/rwAWhystcgQAAAAi/happy-valentines-day-love-happy-valentines-day-my-love.gif',
+    'https://media.tenor.com/RUd2klwr7t4AAAAi/haleys-ouo.gif'
+];
 /* REF/REACTIVE */
 // yes vars
 const yesScale = ref(1); // used for scale botton size
@@ -25,17 +31,11 @@ const noIndexPhrase = reactive({
 });
 const noStylePosition = ref({
     position: 'static',
-    top: '50%',
-    left: '50%',
 });
 
 
 /* FUNCTIONS */
 const pressNoButton = () => {
-    console.log("click no");
-
-    if (!noBtn.value) return;
-
     if (noIndexPhrase.index < noIndexPhrase.limit) {
         noIndexPhrase.index++;
     }
@@ -48,17 +48,16 @@ const pressNoButton = () => {
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
 
+    yesScale.value += 0.45;
+
     noStylePosition.value = {
         position: 'fixed',
         left: `${randomX}px`,
         top: `${randomY}px`,
     };
-
-    yesScale.value += 0.9;
 }
 
 const pressYesButton = () => {
-    console.log("click si");
     pressedYes.value = true;
 }
 </script>
@@ -67,24 +66,27 @@ const pressYesButton = () => {
 
 <template>
     <section>
-        <div id="container" v-if="!pressedYes">
-            <h1>Vuoi stare con me?</h1>
-            <p>{{ noPhrases[noIndexPhrase.index] }}</p>
-            <img src="@/assets/images/minion-valentine.jpg" alt="Minion Valentine" />
-            <div class="buttons">
+        <div class="container" v-if="!pressedYes">
+            <div>
+                <h1>Ciao Giogis <br> Vuoi passare san valentino con me?</h1>
+                <p>{{ noPhrases[noIndexPhrase.index] }}</p>
+            </div>
+            <img :src="gifts[noIndexPhrase.index]" alt="cute image Valentine" />
+            <div class="buttons-container">
                 <!-- YES -->
                 <button class="yes" :style="{ transform: `scale(${yesScale})` }" @click="pressYesButton">
-                    Sì
+                    Yes!!
                 </button>
                 <!-- NO -->
-                <div class="wrapepr" :style="noStylePosition">
-                    <button ref="noBtn" class="no" @click="pressNoButton">
-                        No
-                    </button>
-                </div>
+                <button ref="noBtn" :style="noStylePosition" class="no" @click="pressNoButton">
+                    No
+                </button>
             </div>
         </div>
-        <p v-else class="love">love uuu ❤️</p>
+        <div v-else class="container">
+            <img class="final-kiss-gif" src="https://media1.tenor.com/m/TO3XZieplToAAAAd/cat-kiss-cock.gif" alt="">
+            <p class="love">love uuu too❤️</p>
+        </div>
     </section>
 </template>
 
@@ -96,52 +98,63 @@ section {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(120deg, pink, white);
+    background: linear-gradient(120deg, pink 20%, white 90%);
 }
 
-#container {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
+    text-align: center;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: bold;
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1.45rem;
 }
 
-.buttons {
+img {
+    width: 200px;
+}
+
+img.final-kiss-gif {
+    width: 60%;
+}
+
+.buttons-container {
     display: flex;
     justify-content: space-around;
     width: 100%;
-}
 
-button {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
+    button {
+        padding: 12px 24px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: 2px solid black;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
 
-.yes {
-    background-color: rgb(146, 28, 146);
-    color: white;
-}
+        &.yes {
+            background-image: url(https://t3.ftcdn.net/jpg/02/73/62/02/360_F_273620242_EGmYZddPe9QUPw8YardUfE1CBeNWjugo.jpg);
+            background-position: center;
+            background-size: cover;
+            color: black;
+        }
 
-.no {
-    background-color: rgb(247, 109, 109);
-    color: white;
-    z-index: 9999;
-}
+        &.no {
+            font-size: 1rem;
+            background-color: rgb(178, 36, 81);
+            color: white;
+            z-index: 9999;
+        }
+    }
 
-.love {
-    font-size: 2rem;
+
 }
 </style>
