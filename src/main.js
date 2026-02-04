@@ -5,7 +5,7 @@ import App from './App.vue'
 import { router } from './router';
 
 // import scss custom main file + bootstrap styles + icons + js interactions
-// import '@/styles/main.scss';
+import '@/styles/main.scss';
 
 const app = createApp(App);
 app.use(router); // use router for navigation of pages
