@@ -24,9 +24,9 @@ html {
 
 body {
     min-height: 100vh;
-    background: white;
+    background: linear-gradient(120deg, pink, white);
     color: black;
-    font-family: $font-family-base;
+    font-family: $font-family-hand;
     font-weight: $font-weight-normal;
     line-height: 1.5;
 }
