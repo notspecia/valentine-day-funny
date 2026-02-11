@@ -23,8 +23,9 @@ html {
 }
 
 body {
-    min-height: 100vh;
-    background: linear-gradient(120deg, pink, white);
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(120deg, pink 20%, white 90%);
     color: black;
     font-family: $font-family-hand;
     font-weight: $font-weight-normal;
