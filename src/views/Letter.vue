@@ -16,6 +16,7 @@ const renderToGame = () => {
 </script>
 
 
+
 <template>
     <section>
         <div class="wrapper">
