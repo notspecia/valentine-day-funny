@@ -110,7 +110,7 @@ const pressYesButton = () => {
         </div>
         <div class="container" v-if="!pressedYes">
             <div>
-                <h1>Hello Giogi</h1>
+                <h1>Hello Dear</h1>
                 <h2>Do you want to be my valentine?</h2>
                 <p class="no-phrase">{{ noPhrases[noIndexPhrase.index] }}</p>
             </div>
