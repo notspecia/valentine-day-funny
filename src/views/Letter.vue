@@ -28,6 +28,8 @@ const renderToGame = () => {
                     <3 </p>
             </div>
         </div>
+        <!-- help text -->
+        <p>(press the letter :3)</p>
     </section>
 </template>
 
@@ -36,6 +38,7 @@ const renderToGame = () => {
 <style scoped lang="scss">
 section {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -50,6 +53,7 @@ section {
         height: 200px;
         width: 300px;
         background-color: #c93737;
+        margin-bottom: 20px;
         cursor: pointer;
 
         .lid {
@@ -100,7 +104,7 @@ section {
             top: 0;
             z-index: 2;
             width: 80%;
-            height: 80%;
+            height: 100%;
             background-image: url(https://t3.ftcdn.net/jpg/02/73/62/02/360_F_273620242_EGmYZddPe9QUPw8YardUfE1CBeNWjugo.jpg);
             border-radius: 15px;
             transition: 0.5s;
@@ -132,14 +136,18 @@ section {
         }
 
         &:hover .letter {
-            transform: translateY(-61px);
+            transform: translateY(-80px);
             transition-delay: 0.5s;
         }
 
         .letter.open {
             transform: translateY(-1000px);
-            transition-delay: 0.5s;
+            transition-delay: 0.1s;
         }
+    }
+
+    p {
+        color: rgba(0, 0, 0, 0.7);
     }
 }
 </style>
